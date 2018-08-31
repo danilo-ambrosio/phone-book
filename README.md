@@ -2,23 +2,19 @@
 
 VISÃO GERAL
 
-O domínio dessa aplicação, que simula basicamente um cadastro de contatos de telefone, possui apenas 2 aggregates - Contact e Country - e deve suportar as seguintes operações:
- -Criação de contatos;
- -Edição de contatos;
- -Consulta de contatos;
- -Consulta de países;
+O domínio dessa aplicação, que simula basicamente um cadastro de contatos de telefone, possui apenas 2 aggregates (Contact e Country) e deve suportar as seguintes operações: criação de contatos, edição de contatos, consulta de contatos e consulta de países;
 
 DESCRIÇÃO DE FUNCIONALIDADES
 
--Ao cadastrar um contato, o usuário deve informar nome e telefone do contato, contendo o código que identifica o país como prefixo do número telefonico. Uma vez cadastrado, um evento de domínio deve ser propagado para que o contato seja associado ao país (Country) relacionado ao código que consta no número telefonico.
+Ao cadastrar um contato, o usuário deve informar nome e telefone do contato, contendo o código que identifica o país como prefixo do número telefonico. Uma vez cadastrado, um evento de domínio deve ser propagado para que o contato seja associado ao país (Country) relacionado ao código que consta no número telefonico.
 
--Quando o usuário for editado, se o código de país do telefone for alterado, outro evento de domínio deve ser propagado para que seja associado ao país relacionado o número de telefone alterado.
+Quando o usuário for editado, se o código de país do telefone for alterado, outro evento de domínio deve ser propagado para que seja associado ao país relacionado o número de telefone alterado.
 
--A consulta de contatos deve apresentar o nome do contato e seu número de telefone.
+A consulta de contatos deve apresentar o nome do contato e seu número de telefone.
 
--A consulta de países deve apresentar o nome do país e os contatos relacionados.
+A consulta de países deve apresentar o nome do país e os contatos relacionados.
 
--Somente os países Brasil, Inglaterra e EUA estão sendo considerados nessa aplicação;
+Somente os países Brasil, Inglaterra e EUA estão sendo considerados nessa aplicação;
 
 ESPECIFICAÇÕES TÉCNICAS
 
@@ -38,6 +34,8 @@ O relacionamento de Country para Contato é "One-to-Many" e unidirecional.
 
 Essa aplicação utiliza Spring Boot. Para execução, usar os comandos: mvn clean package && mvn spring-boot:run 
 
-OBSERVAÇÃO
+OBSERVAÇÕES
 
 DomainEvent, DomainEventConfig, DomainEventNotifier, DomainEventListener, DomainEventType já foram implementados.
+
+O código deve seguir os príncipios SOLID e boas práticas como "Tell don't ask" e "Law of Demeter".
