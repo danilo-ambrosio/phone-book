@@ -5,5 +5,4 @@ target/
 **/.settings/
 **/.idea/
 /src/main/resources/application.properties
-/pom.xml
 *.iml
