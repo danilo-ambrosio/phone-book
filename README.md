@@ -2,7 +2,7 @@
 
 VISÃO GERAL
 
-O domínio dessa aplicação, que simula basicamente um cadastro de contatos de telefone, possui apenas 2 aggregates (Contact e Country) e deve suportar as seguintes operações: criação de contatos, edição de contatos, consulta de contatos e consulta de países;
+O domínio dessa aplicação, que simula basicamente um cadastro de contatos de telefone, possui apenas 2 aggregates (Contact e Country) e deve suportar as seguintes operações: criação de contatos, edição de contatos, consulta de contatos e consulta de países.
 
 DESCRIÇÃO DE FUNCIONALIDADES
 
