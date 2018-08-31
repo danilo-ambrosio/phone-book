@@ -1,0 +1,109 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                      http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <changeSet id="1" author="danilo">
+        <sql dbms="postgresql" endDelimiter=";">CREATE SCHEMA IF NOT EXISTS pbk</sql>
+    </changeSet>
+
+    <!-- CONTACT -->
+    <changeSet id="2" author="danilo">
+
+        <comment>Creation of CONTACT table</comment>
+
+        <createTable tableName="CONTACT">
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PHONE" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey constraintName="XPKCONTACT" tableName="CONTACT" columnNames="id"/>
+
+        <createSequence sequenceName="SEQ_CONTACT" startValue="1" cacheSize="0" cycle="false" incrementBy="1"/>
+
+        <rollback>
+            <dropIndex indexName="XPKCONTACT" tableName="CONTACT"/>
+            <dropSequence sequenceName="SEQ_CONTACT"/>
+            <dropTable tableName="CONTACT"/>
+        </rollback>
+    </changeSet>
+
+    <!-- COUNTRY -->
+    <changeSet id="3" author="danilo">
+
+        <comment>Creation of COUNTRY table</comment>
+
+        <createTable tableName="COUNTRY">
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" type="VARCHAR2(5)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey constraintName="XPKCOUNTRY" tableName="COUNTRY" columnNames="id"/>
+
+        <createIndex indexName="XUKCOUNTRY" tableName="COUNTRY" unique="true">
+            <column name="NAME"/>
+        </createIndex>
+
+        <createSequence sequenceName="SEQ_COUNTRY" startValue="1" cacheSize="0" cycle="false"
+                        incrementBy="1" />
+
+        <rollback>
+            <dropIndex indexName="XPKCOUNTRY" tableName="COUNTRY"/>
+            <dropSequence sequenceName="COUNTRY"/>
+            <dropTable tableName="COUNTRY"/>
+        </rollback>
+    </changeSet>
+
+    <!-- CONTACT_COUNTRY -->
+    <changeSet id="4" author="danilo">
+
+        <comment>Creation of CONTACT_COUNTRY table that relates CONTACT and COUNTRY</comment>
+
+        <createTable tableName="CONTACT_COUNTRY">
+            <column name="ID_CONTACT" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID_COUNTRY" type="NUMBER(19, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="CONTACT_COUNTRY" baseColumnNames="ID_CONTACT" referencedTableName="CONTACT"
+                                 referencedColumnNames="ID" constraintName="FK1CONTACTGROUP" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"/>
+
+        <addForeignKeyConstraint baseTableName="CONTACT_COUNTRY" baseColumnNames="ID_COUNTRY" referencedTableName="COUNTRY"
+                                 referencedColumnNames="ID" constraintName="FK2CONTACTGROUP" deferrable="false"
+                                 initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT"/>
+
+        <createIndex indexName="XUKCONTACTCOUNTRY" tableName="CONTACT_COUNTRY" unique="true">
+            <column name="ID_CONTACT"/>
+            <column name="ID_COUNTRY"/>
+        </createIndex>
+
+        <rollback>
+            <dropIndex indexName="XUKCONTACTGROUP" tableName="CONTACT_GROUP"/>
+            <dropTable tableName="CONTACT_GROUP"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

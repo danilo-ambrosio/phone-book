@@ -1,0 +1,6 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      - ./src/main/resources/db-scripts/init.sql:/docker-entrypoint-initdb.d/init.sql

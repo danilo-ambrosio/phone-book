@@ -1,0 +1,9 @@
+target/
+/bin/
+**/.project
+**/.classpath
+**/.settings/
+**/.idea/
+/src/main/resources/application.properties
+/pom.xml
+*.iml
