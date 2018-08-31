@@ -24,7 +24,7 @@
             <column name="NAME" type="VARCHAR2(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PHONE" type="VARCHAR2(100)">
+            <column name="PHONE_NUMBER" type="VARCHAR2(100)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -104,6 +104,26 @@
             <dropIndex indexName="XUKCONTACTGROUP" tableName="CONTACT_GROUP"/>
             <dropTable tableName="CONTACT_GROUP"/>
         </rollback>
+    </changeSet>
+
+
+    <changeSet id="5" author="dambrosio">
+        <comment>Default data for COUNTRY table</comment>
+        <insert tableName="COUNTRY">
+            <column name="ID" valueComputed="nextval('pbk.SEQ_COUNTRY')"/>
+            <column name="NAME" value="Brasil"/>
+            <column name="CODE" value="55"/>
+        </insert>
+        <insert tableName="COUNTRY">
+            <column name="ID" valueComputed="nextval('pbk.SEQ_COUNTRY')"/>
+            <column name="NAME" value="Inglaterra"/>
+            <column name="CODE" value="44"/>
+        </insert>
+        <insert tableName="COUNTRY">
+            <column name="ID" valueComputed="nextval('pbk.SEQ_COUNTRY')"/>
+            <column name="NAME" value="Estados Unidos"/>
+            <column name="CODE" value="1"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>

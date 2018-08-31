@@ -1,9 +1,3 @@
-/*
- * @(#)PhoneBookApplication.java 1.0 26/04/2018
- *
- * Copyright (c) 2018, GSW. All rights reserved.
- */
-
 package br.com.gsw.phonebook;
 
 import org.springframework.boot.SpringApplication;

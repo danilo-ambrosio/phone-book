@@ -12,7 +12,6 @@
 		</or>
 	</preConditions>
 
-	<include file="db-scripts/0.0.0.1/01.db.tables.xml" />
-	<include file="db-scripts/test/01.db.users.xml"  />
+	<include file="/src/main/resources/db-scripts/0.0.0.1/01.db.tables.xml" />
 
 </databaseChangeLog>

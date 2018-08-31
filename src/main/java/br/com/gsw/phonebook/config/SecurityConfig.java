@@ -1,9 +1,3 @@
-/*
- * @(#)SecurityConfig.java 1.0 26/04/2018
- *
- * Copyright (c) 2018, Plena. All rights reserved.
- */
-
 package br.com.gsw.phonebook.config;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
