@@ -26,14 +26,18 @@ Todas as operações serão providas através de uma REST API. Portanto, os end-
 
 Utilizar também a "Layered Architecture", ou seja, implementar as classes responsáveis pela camada de serviços, domínio e infraestrutura.
 
-Os eventos de domínio devem estender DomainEvent e devem ser propagadas através do DomainEventNotifier. O enum de tipos de evento devem ser DomainEventType.
+Os eventos de domínio devem estender DomainEvent e devem ser propagadas através do DomainEventNotifier. Os tipos de evento devem ser incluídos no enum DomainEventType.
 
-Os listeners de evento de domínio devem implementer a interface DomainEventListener. DomainEvent, DomainEventNotifier, DomainEventListener, DomainEventType já foram implementados.
+O mapeamento dos listeners com os eventos de domínio deve ser feito na classe de configuração DomainEventConfig.
 
-O banco Postgres deve ser inicializado através do Docker e Liquibase com o comando : docker-compose -d up && mvn liquibase:update. Assim, todas as tabelas serão criadas bem como a carga de países (Brasil, Inglaterra e EUA).
+Os listeners de evento de domínio devem implementer a interface DomainEventListener.
+
+O banco Postgres deve ser inicializado através do Docker e Liquibase com o comando: docker-compose -d up && mvn liquibase:update. Assim, todas as tabelas serão criadas bem como a carga de países (Brasil, Inglaterra e EUA).
 
 O relacionamento de Country para Contato é "One-to-Many" e unidirecional. 
 
 Essa aplicação utiliza Spring Boot. Para execução, usar os comandos: mvn clean package && mvn spring-boot:run 
 
+OBSERVAÇÃO
 
+DomainEvent, DomainEventConfig, DomainEventNotifier, DomainEventListener, DomainEventType já foram implementados.
